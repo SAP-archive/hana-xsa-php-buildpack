@@ -137,7 +137,7 @@ xs create-buildpack phpbp php-buildpack 10
 xs push phpapp -p php-test
 ```
 
-###Example
+# Example
 
 This buildpack can be exercised with the following sample Multi-Target-Application found in the example folder.  
 See the [README](/example/README.md) located in the example folder.
