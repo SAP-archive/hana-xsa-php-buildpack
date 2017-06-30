@@ -31,7 +31,8 @@ To remove the MTA.
 xs undeploy myapp2
 ```
 
-#Supporting Buildpack
+# Supporting Buildpack
+
 This example MTA project requires an experimental and unsuppored buildpack that can be found here.  
-[PHP BuildPack](https://bitbucket.org/byol/php-buildpack-op)
+[HANA XSA PHP BuildPack](https://github.com/SAP/hana-xsa-php-buildpack)
 
