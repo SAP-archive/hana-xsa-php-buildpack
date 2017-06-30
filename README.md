@@ -5,7 +5,7 @@ This Buildpack adds support for modules based on PHP code to a HANA XS Advanced 
 
 This PHP Buildpack is based on PHP Version 5.6.13.  Note that this decidedly older than the current stable version 7.1.6 or even the most recent stable version of the 5 series which is 5.6.30 (versions noted here are current as of 2017-06-29).  The reason for this is that SAP enforces a strict open source approval policy that applies to publically released software and version 5.6.13 is currently the most recent SAP approved version PHP.  In the future newer versions may be approved and this buildpack updated.  However, this is beyond the ability of the contributors to control and as a result NO REQUESTS FOR UPDATING THE PHP VERSION CONTAINED IN THIS BUILDPACK WILL BE HONORED.  You may however, use this buildpack for your own exploration and are encouraged to do so should your needs require a different PHP version.
 
-Also note that this buildpack is not feature complete and may not be suitable for your purpose.  It is intended as a simple example of buildpack construction and can not be guarenteed for any particular fitness of purpose.  Please use it at your own risk and discretion.
+Also note that this buildpack is not feature complete and may not be suitable for your purpose.  It is intended as a simple example of buildpack construction and can not be guaranteed for any particular fitness of purpose.  Please use it at your own risk and discretion.
 
 ### What is a buildpack?
 Buildpacks are a convenient way of packaging framework and/or runtime support for your application. The buildpack defines what happens to your application after being pushed and how it is executed.
@@ -138,5 +138,6 @@ xs push phpapp -p php-test
 ```
 
 ###Example
+
 This buildpack can be exercised with the following sample Multi-Target-Application found in the example folder.  
 See the [README](/example/README.md) located in the example folder.
