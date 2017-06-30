@@ -1,7 +1,7 @@
 # HANA XS Advanced PHP Buildpack
 
 ### PHP Buildpack Info and Disclaimers
-This Buildpack adds support for modules based on PHP code to a HANA XS Advanced system.  If you want to deploy your PHP to a Cloud Foundry based multi-tenant system such as SAP Cloud Foundry Cloud Platform or Pivotal Cloud Foundry , this buildpack WILL NOT WORK!  For those Cloud Foundry based deployment environments, use the community PHP Buildpack documented at [PHP Buildpack](https://docs.cloudfoundry.org/buildpacks/php/).
+This Buildpack adds support for modules based on PHP code to a HANA XS Advanced system.  If you want to deploy your PHP to a Cloud Foundry based multi-tenant system such as SAP Cloud Foundry Cloud Platform or Pivotal Cloud Foundry , this buildpack WILL NOT WORK!  For those Cloud Foundry based deployment environments, use the community PHP Buildpack documented at [CloudFoundry.org PHP Buildpack](https://docs.cloudfoundry.org/buildpacks/php/).
 
 This PHP Buildpack is based on PHP Version 5.6.13.  Note that this decidedly older than the current stable version 7.1.6 or even the most recent stable version of the 5 series which is 5.6.30 (versions noted here are current as of 2017-06-29).  The reason for this is that SAP enforces a strict open source approval policy that applies to publically released software and version 5.6.13 is currently the most recent SAP approved version PHP.  In the future newer versions may be approved and this buildpack updated.  However, this is beyond the ability of the contributors to control and as a result NO REQUESTS FOR UPDATING THE PHP VERSION CONTAINED IN THIS BUILDPACK WILL BE HONORED.  You may however, use this buildpack for your own exploration and are encouraged to do so should your needs require a different PHP version.
 
@@ -137,6 +137,6 @@ xs create-buildpack phpbp php-buildpack 10
 xs push phpapp -p php-test
 ```
 
-
-#Example Multi-Target Appliction
+###Example
 This buildpack can be exercised with the following sample Multi-Target-Application found in the example folder.  
+See the [README](/example/README.md) located in the example folder.
