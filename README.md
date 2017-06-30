@@ -1,4 +1,12 @@
-# Basics
+# HANA XS Advanced PHP Buildpack
+
+### PHP Buildpack Info and Disclaimers
+This Buildpack adds support for modules based on PHP code to a HANA XS Advanced system.  If you want to deploy your PHP to a Cloud Foundry based multi-tenant system such as SAP Cloud Foundry Cloud Platform or Pivotal Cloud Foundry , this buildpack WILL NOT WORK!  For those Cloud Foundry based deployment environments, use the community PHP Buildpack documented at [PHP Buildpack](https://docs.cloudfoundry.org/buildpacks/php/).
+
+This PHP Buildpack is based on PHP Version 5.6.13.  Note that this decidedly older than the current stable version 7.1.6 or even the most recent stable version of the 5 series which is 5.6.30 (versions noted here are current as of 2017-06-29).  The reason for this is that SAP enforces a strict open source approval policy that applies to publically released software and version 5.6.13 is currently the most recent SAP approved version PHP.  In the future newer versions may be approved and this buildpack updated.  However, this is beyond the ability of the contributors to control and as a result NO REQUESTS FOR UPDATING THE PHP VERSION CONTAINED IN THIS BUILDPACK WILL BE HONORED.  You may however, use this buildpack for your own exploration and are encouraged to do so should your needs require a different PHP version.
+
+Also note that this buildpack is not feature complete and may not be suitable for your purpose.  It is intended as a simple example of buildpack construction and can not be guarenteed for any particular fitness of purpose.  Please use it at your own risk and discretion.
+
 ### What is a buildpack?
 Buildpacks are a convenient way of packaging framework and/or runtime support for your application. The buildpack defines what happens to your application after being pushed and how it is executed.
 
@@ -20,14 +28,31 @@ Where config_vars is an optional set of environment variables that will be defin
 
 # Instructions for the PHP buildpack
 
-1. Pack PHP runtime - For this example we are using a "portable" PHP runtime for the operating system where XSA is running. This runtime can be used directly after being unpacked. We are copying the packed runtime to a directory inside the buildpack (runtime/PHP.TGZ).
+1. Buildpack PHP runtime - For this example we are using a "portable" PHP runtime for the operating system where XSA is running. This runtime can be used directly after being unpacked. We are copying the packed runtime to a directory inside the buildpack (runtime/PHP.TGZ).
 1. Implement bin/detect - We are able to handle the pushed content if it contains a file with the name "index.php". In this case the return code is 0.
 2. Implement bin/compile - In this step we extract our PHP runtime (located under runtime/PHP.TGZ) provided as part of our buildpack. Everything lands in the work directory.
 3. Implement bin/release - Here we invoke the PHP interpreter's built in single threaded webserver in the PHP runtime we unpacked in the previous step: ```./bin/php/bin/php -S 127.0.0.1: \$VCAP_APP_PORT``` where VCAP_APP_PORT is a port number under which XSA will expect the application to run. This port will be mapped to the XSA application URL.  The server will try to serve the index.php file found in it's document root.
-4. Use "xs create-buildpack" to upload the buildpack to XSA. ```xs create-buildpack phpbp -p php-buildpack 10```
-5. Use "xs push" to deploy and run the example application.  ```xs push phpapp -p php-test```
-6. Open the browser and try the app: ```<app_url>``` should return ```PHP-Test with PHP version: 5.6.22<br />Server Time is: 02/06/2016 == 16:16:17<br /> and the output of phpinfo()```
-7. Use "xs push" to deploy and run the second example application.  ```xs push gdphpapp -p php-gd``` Which creates an image, writes the date on it (graphically) and returns it as an image/png.
+4. Use "xs create-buildpack" to upload the buildpack to XSA. 
+```
+xs create-buildpack phpbp -p hana-xsa-php-buildpack 10
+```
+5. Use "xs push" to deploy and run the example application.  
+```
+xs push phpapp -p php-test
+```
+6. Open the browser and try the app: 
+```
+<app_url>
+```
+should return 
+```
+PHP-Test with PHP version: 5.6.13<br />Server Time is: 02/06/2016 == 16:16:17<br /> and the output of phpinfo()
+```
+7. Use "xs push" to deploy and run the second example application.  
+```
+xs push gdphpapp -p php-gd
+``` 
+Which creates an image, writes the date on it (graphically) and returns it as an image/png.
 
 # Notes on creating the PHP buildpack
 
@@ -45,9 +70,9 @@ cd /home/ec2-user/buildpacks
 
 // Unzip the latest Stable TAR
 ```
-tar xvf php-5.6.22.tar
+tar xvf php-5.6.13.tar
 
-cd  php-5.6.22
+cd  php-5.6.13
 ```
 
 // 'configure' configures this package to adapt to many kinds of systems.
@@ -112,8 +137,6 @@ xs create-buildpack phpbp php-buildpack 10
 xs push phpapp -p php-test
 ```
 
-// https://phpapp.xsadv.sfphcp.com:30033 (Note my XS-A install is set to use hostnames and thus DNS had to be set up with wildcards)
 
 #Example Multi-Target Appliction
-This buildpack can be exercised with the following sample application.  
-[PHP MTA Example](https://bitbucket.org/byol/php-mta-example)
+This buildpack can be exercised with the following sample Multi-Target-Application found in the example folder.  
