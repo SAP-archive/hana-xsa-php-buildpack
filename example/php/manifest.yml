@@ -1,0 +1,5 @@
+---
+applications:
+- name: myapp2-php
+  memory: 128M
+  port: 60605 #the port used for the approuter

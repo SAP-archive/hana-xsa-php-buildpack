@@ -1,0 +1,103 @@
+_schema-version: 2.0.0
+ID: myapp2
+version: 0.3.0
+
+modules:
+- name: db
+  type: com.sap.xs.hdi
+  path: db/
+  requires:
+   - name: hdi-container
+
+- name: xsjs
+  type: javascript.nodejs
+  path: xsjs/
+  provides:
+    - name: myappjs_api
+      properties:
+        service_url: ${default-url}
+  requires:
+    - name: myapp_uaa
+    - name: db
+    - name: hdi-container
+
+- name: php
+  type: custom
+  path: php/
+  provides:
+    - name: myappphp_api
+      properties:
+        service_url: ${default-url}
+  requires:
+    - name: myapp_uaa
+    - name: db
+    - name: hdi-container
+    - name: myappjs_api
+      group: destinations
+      properties:
+        name: myappjs_be
+        url:  ~{service_url}
+        forwardAuthToken: true
+
+- name: web
+  type: javascript.nodejs
+  path: web/
+  requires:
+    - name: myapp_uaa
+    - name: myappjs_api
+      group: destinations
+      properties:
+        name: myappjs_be
+        url:  ~{service_url}
+        forwardAuthToken: true
+    - name: myappphp_api
+      group: destinations
+      properties:
+        name: myappphp_be
+        url:  ~{service_url}
+        forwardAuthToken: true
+
+resources:
+- name: hdi-container
+  type: com.sap.xs.hdi-container
+
+- name: myapp_uaa
+  type: com.sap.xs.uaa
+
+# manifest.yml version 
+#---
+#applications:
+#
+#- name: myapp2-web
+#  memory: 100M
+#  path: web
+#  env:
+#    destinations: >
+#      [
+#        {"name":"xsjs", "url":"https://myapp2-xsjs.xsadv.sfphcp.com:30033", "forwardAuthToken": true},
+#        {"name":"php", "url":"https://myapp2-php.xsadv.sfphcp.com:30033", "forwardAuthToken": true}
+#      ]
+#  services:
+#    - my-uaa
+#
+#- name: myapp2-db
+#  path: db
+#  memory: 256M
+#  no-route: true
+#  services:
+#    - my-hdi-container
+#
+#- name: myapp2-xsjs
+#  path: xsjs
+#  memory: 128M
+#  services:
+#    - my-uaa
+#    - my-hdi-container
+#
+#- name: myapp2-php
+#  path: php
+#  memory: 128M
+#  services:
+#    - my-uaa
+#    - my-hdi-container
+#

@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Static HTML</title>
+	</head>
+	<body>
+		<h3>Static HTML - Hello World!</h3>
+		<a href="welcome.xsjs">Welcome.XSJS</a><br />
+		<br />
+		<a href="index.php">Index.PHP Querying query.xsjs</a><br />
+		<a href="index.php?dump=true">Index.PHP Querying query.xsjs dump=true</a> Show Environment Info<br />
+		<a href="index.php?nocheck=true">Index.PHP Querying query.xsjs nocheck=true</a> Skip JWT auth check<br />
+		<a href="index.php?killauth=true">Index.PHP killauth=true</a> Kill authorization will return 401 Unauthorized<br />
+		<br/>
+		<a href="query.xsjs">Query</a>
+		<br/><br/>
+		<form action="insert.xsjs" method="get">
+			<input type="submit" value="Insert">
+			id: <input type="number" name="id">&nbsp;
+			value: <input type="text" name="value">
+		</form>
+		<br />
+		<a href="/do/logout">Logout</a> Note: Doesn't redirect back to this app on subsequent login.<br />
+		</body>
+</html>

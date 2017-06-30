@@ -1,0 +1,25 @@
+{
+    "welcomeFile": "index.html",
+    "logout":  {
+        "logoutEndpoint":  "/do/logout"
+    },
+    "authenticationMethod": "route",
+    "routes": [
+        {
+            "destination": "myappjs_be",
+            "source": "(.*)(.xsjs)"
+        },
+        {
+            "destination": "myappjs_be",
+            "source": "(.*)(.xsodata)"
+        },
+        {
+            "destination": "myappphp_be",
+            "source": "(.*)(.php)"
+        },
+        {
+            "localDir": "resources",
+            "source": "^/(.*)"
+        }
+    ]
+}
