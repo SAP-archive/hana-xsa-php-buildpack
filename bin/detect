@@ -1,0 +1,8 @@
+#!/bin/bash
+# bin/detect <build-dir>
+
+if [ -f $1/index.php ];
+    then exit 0
+fi
+
+exit 1

@@ -1,0 +1,11 @@
+#!/bin/bash
+# bin/release
+
+cat <<EOF
+---
+config_vars:
+addons:
+default_process_types:
+  web: ./bin/php/bin/php -S 127.0.0.1:\$VCAP_APP_PORT
+
+EOF

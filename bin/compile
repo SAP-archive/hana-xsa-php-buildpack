@@ -1,0 +1,11 @@
+#!/bin/bash
+# bin/compile <build-dir> <cache-dir>
+
+BUILD_DIR=$1
+BIN_DIR=`dirname $0`
+BUILD_PACK_DIR=`dirname ${BIN_DIR}`
+echo "Extracting PHP into..."
+echo ${BUILD_DIR}
+cd ${BUILD_DIR}
+tar xzvf ${BIN_DIR}/../runtime/PHP.TGZ
+echo "Extracting PHP Done."
