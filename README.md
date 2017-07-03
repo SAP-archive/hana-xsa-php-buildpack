@@ -141,3 +141,7 @@ xs push phpapp -p php-test
 
 This buildpack can be exercised with the following sample Multi-Target-Application found in the example folder.  
 See the [README](/example/README.md) located in the example folder.
+
+# License
+
+This buildpack is licensed under [Apache License 2](/LICENSE).
