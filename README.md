@@ -1,5 +1,7 @@
 # HANA XS Advanced PHP Buildpack
 
+### Note: This repo is undergoing a reorganization so that it can be cloned into the HANA WebIDE as a sample project.  This will be similar to the way the [Python Buildpack](https://github.com/SAP/hana-xsa-python-buildpack) is organized.
+
 ### PHP Buildpack Info and Disclaimers
 This Buildpack adds support for modules based on PHP code to a HANA XS Advanced system.  If you want to deploy your PHP to a Cloud Foundry based multi-tenant system such as SAP Cloud Foundry Cloud Platform or Pivotal Cloud Foundry , this buildpack WILL NOT WORK!  For those Cloud Foundry based deployment environments, use the community PHP Buildpack documented at [CloudFoundry.org PHP Buildpack](https://docs.cloudfoundry.org/buildpacks/php/).
 
